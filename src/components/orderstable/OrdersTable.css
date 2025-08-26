@@ -1,0 +1,265 @@
+/* OrdersTable styles */
+.orders-table-container {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    /* Add padding to prevent horizontal scrollbar from cutting off content */
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
+    max-width: 100%;
+    /* Ensure it doesn't exceed container width */
+}
+
+/* Custom scrollbar styles specifically for the table container */
+.orders-table-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.orders-table-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 3px;
+    margin: 0 10px;
+}
+
+.orders-table-container::-webkit-scrollbar-thumb {
+    background: rgba(56, 189, 248, 0.4);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.orders-table thead {
+    background-color: var(--dark-background);
+    color: var(--text-light);
+}
+
+.orders-table th {
+    padding: 1.2rem 1.5rem;
+    text-align: right;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    position: relative;
+}
+
+.orders-table th:not(:first-child):after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 3px;
+    background-color: var(--accent);
+    transform-origin: right;
+}
+
+.orders-table tbody tr {
+    transition: var(--transition-ease);
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.orders-table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.orders-table tbody tr:hover {
+    background-color: rgba(56, 189, 248, 0.1);
+}
+
+.orders-table tbody tr:active {
+    background-color: rgba(56, 189, 248, 0.2);
+    transform: translateY(1px);
+}
+
+.orders-table td {
+    padding: 1.2rem 1.5rem;
+    vertical-align: middle;
+    transition: var(--transition-ease);
+}
+
+/* Status column styling - base styles */
+.orders-table td.status-column {
+    font-weight: 600;
+    padding: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    min-width: 120px;
+    display: inline-block;
+    margin: 10px 0 0 0;
+}
+
+/* Status dot indicator */
+.orders-table td.status-column::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    vertical-align: middle;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Status-specific colors */
+.orders-table td.status-review {
+    color: #1e40af;
+    /* Blue */
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+.orders-table td.status-review::before {
+    background-color: #3b82f6;
+}
+
+.orders-table td.status-confirmed {
+    color: #15803d;
+    /* Green */
+    background-color: rgba(34, 197, 94, 0.1);
+}
+
+.orders-table td.status-confirmed::before {
+    background-color: #22c55e;
+}
+
+.orders-table td.status-delayed {
+    color: #b45309;
+    /* Amber */
+    background-color: rgba(245, 158, 11, 0.1);
+}
+
+.orders-table td.status-delayed::before {
+    background-color: #f59e0b;
+}
+
+.orders-table td.status-cancelled {
+    color: #b91c1c;
+    /* Red */
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+.orders-table td.status-cancelled::before {
+    background-color: #ef4444;
+}
+
+.orders-table td.status-shipped {
+    color: #7e22ce;
+    /* Purple */
+    background-color: rgba(147, 51, 234, 0.1);
+}
+
+.orders-table td.status-shipped::before {
+    background-color: #9333ea;
+}
+
+.orders-table td.status-delivered {
+    color: #0f766e;
+    /* Teal */
+    background-color: rgba(20, 184, 166, 0.1);
+}
+
+.orders-table td.status-delivered::before {
+    background-color: #14b8a6;
+}
+
+.orders-table td.status-returned {
+    color: #c2410c;
+    /* Orange */
+    background-color: rgba(249, 115, 22, 0.1);
+}
+
+.orders-table td.status-returned::before {
+    background-color: #f97316;
+}
+
+.orders-table td.status-default {
+    color: #4b5563;
+    /* Gray */
+    background-color: rgba(75, 85, 99, 0.1);
+}
+
+.orders-table td.status-default::before {
+    background-color: #9ca3af;
+}
+
+/* ID column styling - typically 1st column */
+.orders-table td.id-column {
+    font-weight: 600;
+    color: var(--dark-background);
+    position: relative;
+}
+
+.orders-table td.id-column::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    background-color: var(--accent);
+    border-radius: 4px;
+    opacity: 0;
+    transition: var(--transition-ease);
+}
+
+.orders-table tbody tr:hover td.id-column::before {
+    opacity: 1;
+    right: -2px;
+}
+
+/* Add a subtle indicator for clickable rows */
+.orders-table tbody tr {
+    position: relative;
+}
+
+.orders-table tbody tr::after {
+    content: '⟩';
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    color: var(--accent);
+    font-weight: bold;
+    opacity: 0;
+    transition: var(--transition-ease);
+}
+
+.orders-table tbody tr:hover::after {
+    transform: translateY(-50%) scale(1);
+    opacity: 0.7;
+    left: 1.5rem;
+}
+
+/* Empty state styling */
+.empty-row td {
+    text-align: center;
+    padding: 3rem !important;
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .orders-table {
+        min-width: 800px;
+        /* Ensure table has minimum width on mobile */
+    }
+
+    .orders-table th,
+    .orders-table td {
+        padding: 1rem;
+    }
+}
