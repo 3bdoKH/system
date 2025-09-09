@@ -1,0 +1,87 @@
+.customers-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 1rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.customers-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: right;
+  background-color: white;
+}
+
+.customers-table th,
+.customers-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.customers-table th {
+  background-color: var(--light-background);
+  font-weight: 600;
+  color: var(--text);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.customers-table tbody tr {
+  transition: var(--transition-ease);
+  cursor: pointer;
+}
+
+.customers-table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.customers-table .id-column {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.customers-table .empty-row {
+  text-align: center;
+  color: #666;
+  padding: 2rem;
+  font-style: italic;
+}
+
+/* Customer status styles */
+.status-pill {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.status-active {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #16a34a;
+}
+
+.status-inactive {
+  background-color: rgba(156, 163, 175, 0.2);
+  color: #4b5563;
+}
+
+.status-banned {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #dc2626;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .customers-table th,
+  .customers-table td {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .customers-table {
+    min-width: 700px;
+  }
+}

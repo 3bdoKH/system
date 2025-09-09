@@ -14,7 +14,7 @@ const OrderDetailsModal = ({ order, customer, onClose, onAction }) => {
     const [orderNote, setOrderNote] = useState('')
     const location = useLocation()
     if (!order) return null
-
+    console.log(order.orderState)
     // Map orderState number to text status
     const getOrderStatusText = (state) => {
         const statusMap = {

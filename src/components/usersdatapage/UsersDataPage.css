@@ -1,0 +1,242 @@
+.users-data-page {
+  padding: 0 2rem;
+  background-color: var(--light-background);
+  min-height: 100%;
+}
+
+.users-data-page h1 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card.active {
+  border-bottom-color: #16a34a;
+}
+
+.stat-card.inactive {
+  border-bottom-color: #4b5563;
+}
+
+.stat-card.banned {
+  border-bottom-color: #dc2626;
+}
+
+.stat-card svg {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  opacity: 0.2;
+  color: var(--accent);
+  transform: scale(2);
+}
+
+.stat-card.active svg {
+  color: #16a34a;
+}
+
+.stat-card.inactive svg {
+  color: #4b5563;
+}
+
+.stat-card.banned svg {
+  color: #dc2626;
+}
+
+.stat-title {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Table tools */
+.table-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.customer-stats {
+  display: flex;
+  gap: 1rem;
+}
+
+.stat-item {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.stat-value {
+  font-weight: 600;
+  color: var(--text);
+  margin-right: 0.25rem;
+}
+
+.search-container-users {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.search-input-wrapper-users {
+  position: relative;
+  width: 200px;
+}
+
+.search-input-wrapper-users svg {
+  position: absolute;
+  left: -18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.search-input-users {
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius);
+  width: 100%;
+  font-family: inherit;
+}
+
+.search-input-users:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+.filter-btn-users {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition-ease);
+  color: var(--text);
+}
+
+.filter-btn-users:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.status-filter-bar {
+  display: flex;
+  gap: 0.5rem;
+}
+
+
+.status-filter-option.active {
+  background-color: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* Empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  color: #666;
+  text-align: center;
+}
+
+.empty-state svg {
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+/* Loading state */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--accent);
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .users-data-page {
+    padding: 1rem;
+  }
+
+  .table-tools {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-container-users {
+    width: 100%;
+  }
+
+  .search-input-wrapper-users {
+    width: 100%;
+  }
+
+  .status-filter-bar {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+}

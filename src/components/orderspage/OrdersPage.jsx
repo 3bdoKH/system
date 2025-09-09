@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react'
 import './OrdersPage.css'
-import { Search, Filter, Package, DollarSign, Calendar, BarChart3, Users } from 'lucide-react'
-import OrdersTable from '../orderstable/OrdersTable'
+import { Search, Filter, Package, Calendar, BarChart3, Users } from 'lucide-react'
+import OrdersTable, { getOrderStatusText } from '../orderstable/OrdersTable'
 import OrderDetailsModal from '../orderdetails/OrderDetailsModal'
+import { customers } from '../../data' // Import customers data
 
 /**
  * OrdersPage - A reusable component for displaying orders with filtering and search functionality
@@ -32,6 +33,7 @@ const OrdersPage = ({
     showStats = true
 }) => {
     const [orderDetails, setOrderDetails] = useState(null)
+    const [selectedCustomer, setSelectedCustomer] = useState(null)
     const [searchTerm, setSearchTerm] = useState('')
     const [statusFilter, setStatusFilter] = useState(initialStatus)
     const [dateFilter, setDateFilter] = useState('')
@@ -39,6 +41,7 @@ const OrdersPage = ({
     // Close the modal
     const closeModal = () => {
         setOrderDetails(null)
+        setSelectedCustomer(null)
     }
 
     // Handle order actions (confirm, delay, cancel, etc.)
@@ -52,22 +55,28 @@ const OrdersPage = ({
     // Filter orders based on search term and status
     const filteredOrders = useMemo(() => {
         return orders.filter(order => {
+            // Get associated customer
+            const customer = customers.find(c => c.id === order.customerId);
+
             // Filter by search term
             const matchesSearch = !searchTerm ? true : (
-                order.customer?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                order.product?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                order.phone?.includes(searchTerm) ||
-                String(order.id).includes(searchTerm)
-            )
+                customer?.fullName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                customer?.phone?.includes(searchTerm) ||
+                String(order.id).includes(searchTerm) ||
+                order.shippingAddress?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                order.trackingCode?.toLowerCase().includes(searchTerm.toLowerCase())
+            );
 
-            // Filter by status
-            const matchesStatus = !statusFilter ? true : order.status === statusFilter
+            // Filter by status (orderState)
+            const matchesStatus = !statusFilter ? true :
+                getOrderStatusText(order.orderState) === statusFilter;
 
-            // Filter by date
-            const matchesDate = !dateFilter ? true : order.date === dateFilter
+            // Filter by date (using orderDate)
+            const matchesDate = !dateFilter ? true :
+                order.orderDate && order.orderDate.split('T')[0] === dateFilter;
 
-            return matchesSearch && matchesStatus && matchesDate
-        })
+            return matchesSearch && matchesStatus && matchesDate;
+        });
     }, [orders, searchTerm, statusFilter, dateFilter])
 
     // Calculate statistics for the stats cards
@@ -77,17 +86,18 @@ const OrdersPage = ({
         // Filter today's orders
         const today = new Date().toISOString().split('T')[0]
         const todayOrders = orders.filter(order =>
-            order.date && order.date.includes(today)
+            order.orderDate && order.orderDate.split('T')[0] === today
         )
 
         // Calculate total revenue
-        const totalRevenue = orders.reduce((sum, order) => sum + (order.total || 0), 0)
+        const totalRevenue = orders.reduce((sum, order) =>
+            sum + (order.totalPrice || 0) + (order.shippingCost || 0), 0)
 
         return {
             totalOrders: orders.length,
             todayOrders: todayOrders.length,
             totalRevenue: totalRevenue,
-            uniqueCustomers: new Set(orders.map(order => order.customer)).size
+            uniqueCustomers: new Set(orders.map(order => order.customerId)).size
         }
     }, [orders, showStats])
 
@@ -210,7 +220,11 @@ const OrdersPage = ({
                 <OrdersTable
                     orders={filteredOrders}
                     columns={columns}
-                    onRowClick={setOrderDetails}
+                    onRowClick={(order) => {
+                        setOrderDetails(order);
+                        const customer = customers.find(c => c.id === order.customerId);
+                        setSelectedCustomer(customer);
+                    }}
                     emptyMessage={emptyStateMessage}
                     colSpan={columns.length}
                 />
@@ -223,11 +237,14 @@ const OrdersPage = ({
             )}
 
             {/* Order Details Modal */}
-            <OrderDetailsModal
-                order={orderDetails}
-                onClose={closeModal}
-                onAction={handleAction}
-            />
+            {orderDetails && (
+                <OrderDetailsModal
+                    order={orderDetails}
+                    customer={selectedCustomer || customers.find(c => c.id === orderDetails.customerId)}
+                    onClose={closeModal}
+                    onAction={handleAction}
+                />
+            )}
         </div>
     )
 }

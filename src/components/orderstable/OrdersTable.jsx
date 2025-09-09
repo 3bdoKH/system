@@ -2,29 +2,50 @@ import React from 'react'
 import './OrdersTable.css'
 
 /**
- * Helper function to convert status values to CSS class names
- * @param {String} status The status value
+ * Helper function to convert orderState values to CSS class names
+ * @param {Number} orderState The order state value
  * @returns {String} The CSS class name suffix
  */
-const getStatusClass = (status) => {
-    switch (status) {
-        case 'تحت المراجعة':
-            return 'review';
-        case 'مؤكد':
-            return 'confirmed';
-        case 'مؤجل':
-            return 'delayed';
-        case 'ملغي':
-            return 'cancelled';
-        case 'مشحون':
-            return 'shipped';
-        case 'مستلم':
-            return 'delivered';
-        case 'مرتجع':
-            return 'returned';
+const getStatusClass = (orderState) => {
+    switch (orderState) {
+        case 0:
+            return 'review'; // جديد
+        case 1:
+            return 'confirmed'; // مؤكد
+        case 2:
+            return 'delayed'; // مؤجل
+        case 3:
+            return 'cancelled'; // ملغي
+        case 4:
+            return 'shipped'; // مشحون
+        case 5:
+            return 'delivered'; // مستلم
+        case 6:
+            return 'returned'; // مرتجع
+        case 7:
+            return 'completed'; // مكتمل
         default:
             return 'default';
     }
+};
+
+/**
+ * Helper function to convert orderState values to status text
+ * @param {Number} orderState The order state value
+ * @returns {String} The status text in Arabic
+ */
+export const getOrderStatusText = (orderState) => {
+    const statusMap = {
+        0: 'جديد',
+        1: 'مؤكد',
+        2: 'مؤجل',
+        3: 'ملغي',
+        4: 'مشحون',
+        5: 'مستلم',
+        6: 'مرتجع',
+        7: 'مكتمل'
+    };
+    return statusMap[orderState] || 'غير معروف';
 };
 
 /**
@@ -58,16 +79,12 @@ const OrdersTable = ({
                         orders.map((order, index) => (
                             <tr key={index} onClick={() => onRowClick(order)}>
                                 {columns.map((column, colIndex) => {
-                                    // Set class for column type
                                     let className = '';
                                     if (column.key === 'id') className = 'id-column';
-
-                                    // Handle status column with different colors based on status value
-                                    if (column.key === 'status') {
-                                        const statusValue = order[column.key];
-                                        className = `status-column status-${getStatusClass(statusValue)}`;
+                                    if (column.key === 'orderState') {
+                                        const orderStateValue = order[column.key];
+                                        className = `status-column status-${getStatusClass(orderStateValue)}`;
                                     }
-
                                     return (
                                         <td key={colIndex} className={className}>
                                             {column.render ? column.render(order) : order[column.key]}

@@ -2,22 +2,20 @@ import "./App.css";
 import Sidebar from "./components/sidebar/Sidebar";
 import { Routes, Route, Navigate } from "react-router-dom";
 import OrdersPage from "./components/orderspage/OrdersPage";
-import { newOrders } from "./data";
+import UsersDataPage from "./components/usersdatapage/UsersDataPage";
+import { newOrders, customers } from "./data";
+import {
+  allOrdersColumns,
+  newOrdersColumns,
+  confirmedOrdersColumns,
+  shippedOrdersColumns,
+  delayedOrdersColumns,
+  getOrderStatusFilterOptions,
+} from "./components/orderstable/tableColumns";
 
 function App() {
-  const orderColumns = [
-    { header: "ID", key: "id" },
-    { header: "العميل", key: "customer" },
-    { header: "العنوان", key: "address" },
-    {
-      header: "المجموع",
-      key: "total",
-      render: (order) => `${order.total} ر.س`,
-    },
-    { header: "الحالة", key: "status" },
-    { header: "الهاتف", key: "phone" },
-    { header: "التاريخ", key: "date" },
-  ];
+  // Filter options from our order status values
+  const filterOptions = getOrderStatusFilterOptions();
 
   // Handler for order actions
   const handleOrderAction = (order, actionType, note) => {
@@ -44,17 +42,9 @@ function App() {
               <OrdersPage
                 title="جميع الطلبات"
                 orders={newOrders}
-                columns={orderColumns}
+                columns={allOrdersColumns}
                 onAction={handleOrderAction}
-                filterOptions={[
-                  "تحت المراجعة",
-                  "مؤكد",
-                  "مؤجل",
-                  "ملغي",
-                  "مشحون",
-                  "مستلم",
-                  "مرتجع",
-                ]}
+                filterOptions={filterOptions}
                 emptyStateMessage="لا توجد طلبات"
               />
             }
@@ -65,13 +55,11 @@ function App() {
             element={
               <OrdersPage
                 title="الطلبات الجديدة"
-                orders={newOrders.filter(
-                  (order) => order.status === "تحت المراجعة"
-                )}
-                columns={orderColumns}
+                orders={newOrders.filter((order) => order.orderState === 0)}
+                columns={newOrdersColumns}
                 onAction={handleOrderAction}
-                filterOptions={["تحت المراجعة"]}
-                initialStatus="تحت المراجعة"
+                filterOptions={[filterOptions[0]]}
+                initialStatus={filterOptions[0]}
                 emptyStateMessage="لا توجد طلبات جديدة"
               />
             }
@@ -82,11 +70,11 @@ function App() {
             element={
               <OrdersPage
                 title="الطلبات المؤجلة"
-                orders={newOrders.filter((order) => order.status === "مؤجل")}
-                columns={orderColumns}
+                orders={newOrders.filter((order) => order.orderState === 2)}
+                columns={delayedOrdersColumns}
                 onAction={handleOrderAction}
-                filterOptions={["مؤجل"]}
-                initialStatus="مؤجل"
+                filterOptions={[filterOptions[2]]}
+                initialStatus={filterOptions[2]}
                 emptyStateMessage="لا توجد طلبات مؤجلة"
               />
             }
@@ -97,11 +85,11 @@ function App() {
             element={
               <OrdersPage
                 title="الطلبات الملغاة"
-                orders={newOrders.filter((order) => order.status === "ملغي")}
-                columns={orderColumns}
+                orders={newOrders.filter((order) => order.orderState === 3)}
+                columns={allOrdersColumns}
                 onAction={handleOrderAction}
-                filterOptions={["ملغي"]}
-                initialStatus="ملغي"
+                filterOptions={[filterOptions[3]]}
+                initialStatus={filterOptions[3]}
                 emptyStateMessage="لا توجد طلبات ملغاة"
               />
             }
@@ -112,11 +100,11 @@ function App() {
             element={
               <OrdersPage
                 title="الطلبات المؤكدة"
-                orders={newOrders.filter((order) => order.status === "مؤكد")}
-                columns={orderColumns}
+                orders={newOrders.filter((order) => order.orderState === 1)}
+                columns={confirmedOrdersColumns}
                 onAction={handleOrderAction}
-                filterOptions={["مؤكد"]}
-                initialStatus="مؤكد"
+                filterOptions={[filterOptions[1]]}
+                initialStatus={filterOptions[1]}
                 emptyStateMessage="لا توجد طلبات مؤكدة"
               />
             }
@@ -127,11 +115,11 @@ function App() {
             element={
               <OrdersPage
                 title="الطلبات المشحونة"
-                orders={newOrders.filter((order) => order.status === "مشحون")}
-                columns={orderColumns}
+                orders={newOrders.filter((order) => order.orderState === 4)}
+                columns={shippedOrdersColumns}
                 onAction={handleOrderAction}
-                filterOptions={["مشحون"]}
-                initialStatus="مشحون"
+                filterOptions={[filterOptions[4]]}
+                initialStatus={filterOptions[4]}
                 emptyStateMessage="لا توجد طلبات مشحونة"
               />
             }
@@ -142,11 +130,11 @@ function App() {
             element={
               <OrdersPage
                 title="الطلبات المرتجعة"
-                orders={newOrders.filter((order) => order.status === "مرتجع")}
-                columns={orderColumns}
+                orders={newOrders.filter((order) => order.orderState === 6)}
+                columns={allOrdersColumns}
                 onAction={handleOrderAction}
-                filterOptions={["مرتجع"]}
-                initialStatus="مرتجع"
+                filterOptions={[filterOptions[6]]}
+                initialStatus={filterOptions[6]}
                 emptyStateMessage="لا توجد طلبات مرتجعة"
               />
             }
@@ -157,11 +145,11 @@ function App() {
             element={
               <OrdersPage
                 title="الطلبات المستلمة"
-                orders={newOrders.filter((order) => order.status === "مستلم")}
-                columns={orderColumns}
+                orders={newOrders.filter((order) => order.orderState === 5)}
+                columns={allOrdersColumns}
                 onAction={handleOrderAction}
-                filterOptions={["مستلم"]}
-                initialStatus="مستلم"
+                filterOptions={[filterOptions[5]]}
+                initialStatus={filterOptions[5]}
                 emptyStateMessage="لا توجد طلبات مستلمة"
               />
             }
@@ -169,9 +157,7 @@ function App() {
 
           <Route
             path="/users-data"
-            element={
-              <div className="not-found">صفحة بيانات العملاء - قيد التطوير</div>
-            }
+            element={<UsersDataPage customers={customers} />}
           />
 
           <Route
