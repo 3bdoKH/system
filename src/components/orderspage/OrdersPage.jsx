@@ -155,6 +155,26 @@ const OrdersPage = ({
                 </div>
 
                 <div className='search-container'>
+
+                    {filterOptions.length > 0 && title === "جميع الطلبات" && (
+                        <div className="status-filter-bar">
+                            <button
+                                className={`status-filter-option ${statusFilter === '' ? 'active' : ''}`}
+                                onClick={() => handleFilterChange(undefined, '', undefined)}
+                            >
+                                كل الحالات
+                            </button>
+                            {filterOptions.map(option => (
+                                <button
+                                    key={option}
+                                    className={`status-filter-option ${statusFilter === option ? 'active' : ''}`}
+                                    onClick={() => handleFilterChange(undefined, option, undefined)}
+                                >
+                                    {option}
+                                </button>
+                            ))}
+                        </div>
+                    )}
                     <div className='search-input-wrapper'>
                         <Search size={18} />
                         <input
@@ -166,18 +186,6 @@ const OrdersPage = ({
                         />
                     </div>
 
-                    {filterOptions.length > 0 && title === "جميع الطلبات" && (
-                        <select
-                            className="status-filter"
-                            value={statusFilter}
-                            onChange={(e) => handleFilterChange(undefined, e.target.value, undefined)}
-                        >
-                            <option value="">كل الحالات</option>
-                            {filterOptions.map(option => (
-                                <option key={option} value={option}>{option}</option>
-                            ))}
-                        </select>
-                    )}
 
                     <input
                         type="date"
