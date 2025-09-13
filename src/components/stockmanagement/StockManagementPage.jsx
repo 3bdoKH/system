@@ -146,7 +146,7 @@ const StockManagementPage = () => {
 
                     <div className="status-filter-bar">
                         <button
-                            className={`status-filter-option ${categoryFilter === '' ? 'active' : ''}`}
+                            className={`status-filter-option ${stockFilter === '' ? 'active' : ''}`}
                             onClick={() => setStockFilter('')}
                         >
                             كل المستويات

@@ -144,25 +144,32 @@ const ReturnsProcessingPage = ({ userRole = 'accountant' }) => {
                 </div>
 
                 <div className="search-container">
-                    <div className="filter-group">
-                        <select
-                            className="status-filter"
-                            value={statusFilter}
-                            onChange={(e) => setStatusFilter(e.target.value)}
+                    <div className="status-filter-bar">
+                        <button
+                            className={`status-filter-option ${statusFilter === '' ? 'active' : ''}`}
+                            onClick={() => setStatusFilter('')}
                         >
-                            <option value="">جميع الحالات</option>
-                            <option value="pending">بانتظار المراجعة</option>
-                            <option value="approved">تمت الموافقة</option>
-                            <option value="rejected">تم الرفض</option>
-                        </select>
-
-                        <input
-                            type="date"
-                            className="date-filter"
-                            value={dateFilter}
-                            onChange={(e) => setDateFilter(e.target.value)}
-                        />
+                            كل الحالات
+                        </button>
+                        {['بانتظار المراجعة', 'تمت الموافقة', 'تم الرفض'].map(option => (
+                            <button
+                                key={option}
+                                className={`status-filter-option ${statusFilter === option ? 'active' : ''}`}
+                                onClick={() => setStatusFilter(option)}
+                            >
+                                {option}
+                            </button>
+                        ))}
                     </div>
+
+
+
+                    <input
+                        type="date"
+                        className="date-filter"
+                        value={dateFilter}
+                        onChange={(e) => setDateFilter(e.target.value)}
+                    />
 
                     <div className="search-input-wrapper">
                         <Search size={18} />

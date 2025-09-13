@@ -19,9 +19,21 @@
 }
 
 .returns-table th {
-  background-color: #f9f9f9;
+  background-color: var(--dark-background);
   font-weight: bold;
-  color: #333;
+  color: var(--text-light);
+  position: relative;
+}
+
+.returns-table th:not(:first-child):after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 3px;
+  background-color: var(--accent);
+  transform-origin: right;
 }
 
 .return-row {
