@@ -1,0 +1,131 @@
+.top-products-chart {
+    height: 100%;
+    overflow: auto;
+}
+
+.products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.product-item:last-child {
+    border-bottom: none;
+}
+
+.product-rank {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #666;
+    flex-shrink: 0;
+}
+
+.product-item:nth-child(1) .product-rank {
+    background-color: #ffd700;
+    /* Gold */
+    color: #333;
+}
+
+.product-item:nth-child(2) .product-rank {
+    background-color: #c0c0c0;
+    /* Silver */
+    color: #333;
+}
+
+.product-item:nth-child(3) .product-rank {
+    background-color: #cd7f32;
+    /* Bronze */
+    color: #fff;
+}
+
+.product-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.product-name {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.product-stats {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+}
+
+.product-count {
+    color: #777;
+}
+
+.product-total {
+    color: #4caf50;
+    font-weight: 500;
+}
+
+.product-percentage {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 80px;
+}
+
+.percentage-bar-container {
+    height: 6px;
+    background-color: #f5f5f5;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.percentage-bar {
+    height: 100%;
+    background-color: #2196f3;
+    border-radius: 3px;
+}
+
+.percentage-value {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: right;
+}
+
+.no-products-message {
+    padding: 20px;
+    text-align: center;
+    color: #777;
+    font-style: italic;
+}

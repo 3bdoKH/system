@@ -36,7 +36,7 @@ const CustomersTable = ({
                                     let className = '';
                                     if (column.key === 'id') className = 'id-column';
                                     if (column.key === 'customerState') {
-                                        className = `status-column status-${getCustomerStatusClass(customer.customerState)}`;
+                                        className = `status-column `;
                                     }
                                     return (
                                         <td key={colIndex} className={className}>

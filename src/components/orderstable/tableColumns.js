@@ -25,7 +25,7 @@ export const allOrdersColumns = [
   {
     key: "id",
     header: "رقم الطلب",
-    render: (order) => `#${order.id}`,
+    render: (order) => `${order.id}`,
   },
   {
     key: "orderDate",
@@ -58,7 +58,7 @@ export const newOrdersColumns = [
   {
     key: "id",
     header: "رقم الطلب",
-    render: (order) => `#${order.id}`,
+    render: (order) => `${order.id}`,
   },
   {
     key: "orderDate",
@@ -91,7 +91,7 @@ export const confirmedOrdersColumns = [
   {
     key: "id",
     header: "رقم الطلب",
-    render: (order) => `#${order.id}`,
+    render: (order) => `${order.id}`,
   },
   {
     key: "orderDate",
@@ -125,7 +125,7 @@ export const shippedOrdersColumns = [
   {
     key: "id",
     header: "رقم الطلب",
-    render: (order) => `#${order.id}`,
+    render: (order) => `${order.id}`,
   },
   {
     key: "orderDate",
@@ -158,7 +158,7 @@ export const delayedOrdersColumns = [
   {
     key: "id",
     header: "رقم الطلب",
-    render: (order) => `#${order.id}`,
+    render: (order) => `${order.id}`,
   },
   {
     key: "orderDate",

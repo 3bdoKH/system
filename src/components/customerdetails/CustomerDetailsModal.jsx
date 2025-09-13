@@ -41,7 +41,7 @@ const CustomerDetailsModal = ({ customer, onClose }) => {
 
             <div className='info-row'>
               <span>الحالة:</span>
-              <span className={`status-pill status-${customer.customerState === 1 ? 'active' : customer.customerState === 0 ? 'inactive' : 'banned'}`}>
+              <span className={`status-pill-modal status-${customer.customerState === 1 ? 'active' : customer.customerState === 0 ? 'inactive' : 'banned'}`}>
                 {getCustomerStatusText(customer.customerState)}
               </span>
             </div>
@@ -62,7 +62,7 @@ const CustomerDetailsModal = ({ customer, onClose }) => {
 
             <div className='info-row'>
               <span>حالة النظام:</span>
-              <span className={`status-pill ${customer.subSystem?.subSystemState === 1 ? 'status-active' : 'status-inactive'}`}>
+              <span className={`status-pill-modal ${customer.subSystem?.subSystemState === 1 ? 'status-active' : 'status-inactive'}`}>
                 {customer.subSystem?.subSystemState === 1 ? 'نشط' : 'غير نشط'}
               </span>
             </div>

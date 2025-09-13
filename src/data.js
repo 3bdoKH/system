@@ -2,11 +2,30 @@ import { Ban, Check, ClipboardPlus, Clock, ListOrdered } from "lucide-react";
 import { Truck } from "lucide-react";
 import { RotateCcw } from "lucide-react";
 import { Users } from "lucide-react";
+import { Package, ClipboardEdit, BarChart2 } from "lucide-react";
 export const pages = [
   {
     name: "جميع الطلبات",
     link: "/all-orders",
     icon: <ListOrdered />,
+  },
+  {
+    name: "إدارة المخزون",
+    link: "/stock-management",
+    icon: <Package />,
+    role: "accountant",
+  },
+  {
+    name: "معالجة المرتجعات",
+    link: "/returns-processing",
+    icon: <ClipboardEdit />,
+    role: ["accountant", "stock_manager"],
+  },
+  {
+    name: "التقارير والإحصائيات",
+    link: "/reports",
+    icon: <BarChart2 />,
+    role: "owner",
   },
   {
     name: "الطلبات الجديدة",
@@ -196,6 +215,7 @@ export const newOrders = [
     trackingCode: null,
     customerId: 1,
     shippingProviderId: 1,
+    imageUrl: "images/product-1.jpeg",
   },
   {
     id: 2,
@@ -210,6 +230,7 @@ export const newOrders = [
     trackingCode: null,
     customerId: 2,
     shippingProviderId: 1,
+    imageUrl: "images/product-2.jpeg",
   },
   {
     id: 3,
@@ -224,6 +245,7 @@ export const newOrders = [
     trackingCode: null,
     customerId: 3,
     shippingProviderId: 2,
+    imageUrl: "images/product-3.jpeg",
   },
   {
     id: 4,
@@ -238,6 +260,7 @@ export const newOrders = [
     trackingCode: null,
     customerId: 4,
     shippingProviderId: 1,
+    imageUrl: "images/product-4.jpeg",
   },
   {
     id: 5,
@@ -252,6 +275,7 @@ export const newOrders = [
     trackingCode: null,
     customerId: 5,
     shippingProviderId: 2,
+    imageUrl: "images/product-5.jpeg",
   },
   {
     id: 6,
@@ -266,6 +290,7 @@ export const newOrders = [
     trackingCode: null,
     customerId: 6,
     shippingProviderId: 1,
+    imageUrl: "images/product-1.jpeg",
   },
   {
     id: 7,
@@ -280,6 +305,7 @@ export const newOrders = [
     trackingCode: null,
     customerId: 7,
     shippingProviderId: 2,
+    imageUrl: "images/product-2.jpeg",
   },
   {
     id: 8,
@@ -294,6 +320,7 @@ export const newOrders = [
     trackingCode: null,
     customerId: 8,
     shippingProviderId: 1,
+    imageUrl: "images/product-3.jpeg",
   },
   {
     id: 9,
@@ -308,6 +335,7 @@ export const newOrders = [
     trackingCode: null,
     customerId: 1,
     shippingProviderId: 2,
+    imageUrl: "images/product-4.jpeg",
   },
   {
     id: 10,
@@ -322,6 +350,7 @@ export const newOrders = [
     trackingCode: null,
     customerId: 3,
     shippingProviderId: 1,
+    imageUrl: "images/product-5.jpeg",
   },
   {
     id: 11,
@@ -336,6 +365,7 @@ export const newOrders = [
     trackingCode: "SHP12345678",
     customerId: 2,
     shippingProviderId: 1,
+    imageUrl: "images/product-1.jpeg",
   },
   {
     id: 12,
@@ -350,6 +380,7 @@ export const newOrders = [
     trackingCode: "SHP23456789",
     customerId: 4,
     shippingProviderId: 2,
+    imageUrl: "images/product-2.jpeg",
   },
   {
     id: 13,
@@ -364,6 +395,7 @@ export const newOrders = [
     trackingCode: "SHP34567890",
     customerId: 5,
     shippingProviderId: 1,
+    imageUrl: "images/product-3.jpeg",
   },
   {
     id: 14,
@@ -378,6 +410,7 @@ export const newOrders = [
     trackingCode: "SHP45678901",
     customerId: 6,
     shippingProviderId: 2,
+    imageUrl: "images/product-4.jpeg",
   },
   {
     id: 15,
@@ -392,6 +425,7 @@ export const newOrders = [
     trackingCode: "SHP56789012",
     customerId: 7,
     shippingProviderId: 1,
+    imageUrl: "images/product-5.jpeg",
   },
   {
     id: 16,
@@ -406,5 +440,6 @@ export const newOrders = [
     trackingCode: "SHP67890123",
     customerId: 8,
     shippingProviderId: 2,
+    imageUrl: "images/product-1.jpeg",
   },
 ];

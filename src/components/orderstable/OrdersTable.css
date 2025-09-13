@@ -43,7 +43,7 @@
 }
 
 .orders-table th {
-    padding: 1.2rem 1.5rem;
+    padding: 1rem;
     text-align: right;
     font-weight: 600;
     font-size: 0.95rem;
@@ -198,8 +198,9 @@
 /* ID column styling - typically 1st column */
 .orders-table td.id-column {
     font-weight: 600;
-    color: var(--dark-background);
+    color: var(--accent);
     position: relative;
+    text-align: center;
 }
 
 .orders-table td.id-column::before {

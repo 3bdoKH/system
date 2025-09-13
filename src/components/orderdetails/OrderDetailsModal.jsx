@@ -4,12 +4,12 @@ import './OrderDetailsModal.css'
 import { useLocation } from 'react-router-dom'
 import { formatDate } from '../../utils/formatters'
 /**
- * Reusable order details modal component
- * @param {Object} props Component props
- * @param {Object} props.order - The order data to display
- * @param {Function} props.onClose - Function to close the modal
- * @param {Function} props.onAction - Function called when an action button is clicked (receives actionType and note)
- */
+* Reusable order details modal component
+* @param {Object} props Component props
+* @param {Object} props.order - The order data to display
+* @param {Function} props.onClose - Function to close the modal
+* @param {Function} props.onAction - Function called when an action button is clicked (receives actionType and note)
+*/
 const OrderDetailsModal = ({ order, customer, onClose, onAction }) => {
     const [orderNote, setOrderNote] = useState('')
     const location = useLocation()
@@ -48,11 +48,14 @@ const OrderDetailsModal = ({ order, customer, onClose, onAction }) => {
                         <div className='status-badge'>
                             {getOrderStatusText(order.orderState)}
                         </div>
+                        <img src={require(`../../${order.imageUrl}`)} alt='order-image' className='order-image' />
+
                         <div className='order-dates'>
                             <div>تاريخ الطلب: {formatDate(order.orderDate)}</div>
                             {order.deliveryDate && <div>تاريخ التسليم: {formatDate(order.deliveryDate)}</div>}
                             {order.delayedUntil && <div>مؤجل حتى: {formatDate(order.delayedUntil)}</div>}
                         </div>
+
                     </div>
 
                     <div className='order-info'>

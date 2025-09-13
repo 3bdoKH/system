@@ -48,15 +48,6 @@ export const getOrderStatusText = (orderState) => {
     return statusMap[orderState] || 'غير معروف';
 };
 
-/**
- * Reusable orders table component
- * @param {Object} props Component props
- * @param {Array} props.orders - The array of orders to display
- * @param {Array} props.columns - Array of column configuration objects
- * @param {Function} props.onRowClick - Function to handle row click (receives the order as parameter)
- * @param {String} props.emptyMessage - Message to show when there are no orders
- * @param {Number} props.colSpan - Number of columns for empty state message
- */
 const OrdersTable = ({
     orders = [],
     columns = [],

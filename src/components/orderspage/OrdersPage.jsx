@@ -3,7 +3,7 @@ import './OrdersPage.css'
 import { Search, Filter, Package, Calendar, BarChart3, Users } from 'lucide-react'
 import OrdersTable, { getOrderStatusText } from '../orderstable/OrdersTable'
 import OrderDetailsModal from '../orderdetails/OrderDetailsModal'
-import { customers } from '../../data' // Import customers data
+import { customers } from '../../data'
 
 /**
  * OrdersPage - A reusable component for displaying orders with filtering and search functionality
@@ -38,13 +38,11 @@ const OrdersPage = ({
     const [statusFilter, setStatusFilter] = useState(initialStatus)
     const [dateFilter, setDateFilter] = useState('')
 
-    // Close the modal
     const closeModal = () => {
         setOrderDetails(null)
         setSelectedCustomer(null)
     }
 
-    // Handle order actions (confirm, delay, cancel, etc.)
     const handleAction = (actionType, note) => {
         if (onAction) {
             onAction(orderDetails, actionType, note)
@@ -83,13 +81,11 @@ const OrdersPage = ({
     const stats = useMemo(() => {
         if (!showStats) return null
 
-        // Filter today's orders
         const today = new Date().toISOString().split('T')[0]
         const todayOrders = orders.filter(order =>
             order.orderDate && order.orderDate.split('T')[0] === today
         )
 
-        // Calculate total revenue
         const totalRevenue = orders.reduce((sum, order) =>
             sum + (order.totalPrice || 0) + (order.shippingCost || 0), 0)
 
@@ -101,7 +97,6 @@ const OrdersPage = ({
         }
     }, [orders, showStats])
 
-    // Handle filter changes
     const handleFilterChange = (search, status, date) => {
         setSearchTerm(search !== undefined ? search : searchTerm)
         setStatusFilter(status !== undefined ? status : statusFilter)
@@ -117,7 +112,6 @@ const OrdersPage = ({
         }
     }
 
-    // Render loading state
     if (isLoading) {
         return (
             <div className='orders-page'>
@@ -134,7 +128,6 @@ const OrdersPage = ({
         <div className='orders-page'>
             <h1>{title}</h1>
 
-            {/* Stats Cards */}
             {showStats && stats && (
                 <div className='stats-row'>
                     <div className='stat-card'>
@@ -155,7 +148,6 @@ const OrdersPage = ({
                 </div>
             )}
 
-            {/* Filters Row */}
             <div className='table-tools'>
                 <div className='order-stats'>
                     <div className='stat-item'>
@@ -165,7 +157,6 @@ const OrdersPage = ({
                 </div>
 
                 <div className='search-container'>
-
                     {filterOptions.length > 0 && title === "جميع الطلبات" && (
                         <div className="status-filter-bar">
                             <button
@@ -195,15 +186,12 @@ const OrdersPage = ({
                             className='search-input'
                         />
                     </div>
-
-
                     <input
                         type="date"
                         className="date-filter"
                         value={dateFilter}
                         onChange={(e) => handleFilterChange(undefined, undefined, e.target.value)}
                     />
-
                     <button
                         className='filter-btn'
                         onClick={() => handleFilterChange('', '', '')}
@@ -215,7 +203,6 @@ const OrdersPage = ({
                 </div>
             </div>
 
-            {/* Table or Empty State */}
             {filteredOrders.length > 0 ? (
                 <OrdersTable
                     orders={filteredOrders}
@@ -236,7 +223,6 @@ const OrdersPage = ({
                 </div>
             )}
 
-            {/* Order Details Modal */}
             {orderDetails && (
                 <OrderDetailsModal
                     order={orderDetails}

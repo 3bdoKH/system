@@ -3,6 +3,9 @@ import Sidebar from "./components/sidebar/Sidebar";
 import { Routes, Route, Navigate } from "react-router-dom";
 import OrdersPage from "./components/orderspage/OrdersPage";
 import UsersDataPage from "./components/usersdatapage/UsersDataPage";
+import StockManagementPage from "./components/stockmanagement/StockManagementPage";
+import ReturnsProcessingPage from "./components/returnsprocessing/ReturnsProcessingPage";
+import ReportsPage from "./components/reportspage/ReportsPage";
 import { newOrders, customers } from "./data";
 import {
   allOrdersColumns,
@@ -159,6 +162,15 @@ function App() {
             path="/users-data"
             element={<UsersDataPage customers={customers} />}
           />
+
+          <Route path="/stock-management" element={<StockManagementPage />} />
+
+          <Route
+            path="/returns-processing"
+            element={<ReturnsProcessingPage userRole="accountant" />}
+          />
+
+          <Route path="/reports" element={<ReportsPage />} />
 
           <Route
             path="*"

@@ -1,0 +1,230 @@
+.stock-movement-modal {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  direction: rtl;
+}
+
+.stock-movement-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.stock-movement-modal .modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.stock-movement-modal .close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #777;
+  transition: color 0.2s;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.stock-movement-modal .close-button:hover {
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+.stock-movement-modal .modal-content {
+  padding: 20px;
+}
+
+.stock-movement-modal .product-summary {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.stock-movement-modal .product-thumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.stock-movement-modal .product-info {
+  flex: 1;
+}
+
+.stock-movement-modal .product-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.stock-movement-modal .product-info .sku {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+.stock-movement-modal .product-info .current-stock {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.stock-movement-modal .product-info .current-stock span {
+  font-weight: bold;
+}
+
+.stock-movement-modal .form-group {
+  margin-bottom: 20px;
+}
+
+.stock-movement-modal .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.stock-movement-modal .quantity-input-wrapper {
+  position: relative;
+}
+
+.stock-movement-modal .quantity-input {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.stock-movement-modal .quantity-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+}
+
+.stock-movement-modal .quantity-icon.add {
+  color: #4caf50;
+}
+
+.stock-movement-modal .quantity-icon.remove {
+  color: #f44336;
+}
+
+.stock-movement-modal .error-message {
+  color: #f44336;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.stock-movement-modal .notes-input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+.stock-movement-modal .result-preview {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.stock-movement-modal .preview-title {
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.stock-movement-modal .preview-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.stock-movement-modal .preview-item.final {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #ddd;
+  font-weight: bold;
+}
+
+.stock-movement-modal .preview-item .label {
+  color: #555;
+}
+
+.stock-movement-modal .preview-item .value {
+  color: #333;
+}
+
+.stock-movement-modal .preview-item .value.positive {
+  color: #4caf50;
+}
+
+.stock-movement-modal .preview-item .value.negative {
+  color: #f44336;
+}
+
+.stock-movement-modal .modal-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.stock-movement-modal .cancel-button {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.stock-movement-modal .cancel-button:hover {
+  background-color: #f5f5f5;
+}
+
+.stock-movement-modal .submit-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.stock-movement-modal .submit-button.add {
+  background-color: #4caf50;
+}
+
+.stock-movement-modal .submit-button.add:hover {
+  background-color: #3d8b40;
+}
+
+.stock-movement-modal .submit-button.remove {
+  background-color: #f44336;
+}
+
+.stock-movement-modal .submit-button.remove:hover {
+  background-color: #d32f2f;
+}
