@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import './StockManagementPage.css';
 import { Search, Filter, PackageCheck, AlertTriangle, PackagePlus, History } from 'lucide-react';
-import { products, productCategories, stockMovements } from '../../products';
+import { products, productCategories, stockMovements, stockLevels } from '../../products';
 import StockTable from './StockTable';
 import ProductDetailsModal from './ProductDetailsModal';
 import StockMovementModal from './StockMovementModal';
@@ -104,6 +104,7 @@ const StockManagementPage = () => {
 
             {/* Filters and search */}
             <div className="table-tools">
+
                 <div className="stock-actions">
                     <button
                         className="add-stock-btn"
@@ -123,30 +124,42 @@ const StockManagementPage = () => {
                         <span>{showMovementHistory ? 'عرض المنتجات' : 'عرض حركة المخزون'}</span>
                     </button>
                 </div>
-
                 <div className="search-container">
-                    <div className="filter-group">
-                        <select
-                            className="category-filter"
-                            value={categoryFilter}
-                            onChange={(e) => setCategoryFilter(e.target.value)}
-                        >
-                            <option value="">كل الفئات</option>
-                            {productCategories.map((category) => (
-                                <option key={category} value={category}>{category}</option>
-                            ))}
-                        </select>
 
-                        <select
-                            className="stock-level-filter"
-                            value={stockFilter}
-                            onChange={(e) => setStockFilter(e.target.value)}
+                    <div className="status-filter-bar">
+                        <button
+                            className={`status-filter-option ${categoryFilter === '' ? 'active' : ''}`}
+                            onClick={() => setCategoryFilter('')}
                         >
-                            <option value="">كل المستويات</option>
-                            <option value="low">مخزون منخفض</option>
-                            <option value="normal">مخزون كافي</option>
-                            <option value="out">نفذ من المخزون</option>
-                        </select>
+                            كل الفئات
+                        </button>
+                        {productCategories.map(option => (
+                            <button
+                                key={option}
+                                className={`status-filter-option ${categoryFilter === option ? 'active' : ''}`}
+                                onClick={() => setCategoryFilter(option)}
+                            >
+                                {option}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="status-filter-bar">
+                        <button
+                            className={`status-filter-option ${categoryFilter === '' ? 'active' : ''}`}
+                            onClick={() => setStockFilter('')}
+                        >
+                            كل المستويات
+                        </button>
+                        {stockLevels.map(option => (
+                            <button
+                                key={option}
+                                className={`status-filter-option ${stockFilter === option ? 'active' : ''}`}
+                                onClick={() => setStockFilter(option)}
+                            >
+                                {option}
+                            </button>
+                        ))}
                     </div>
 
                     <div className="search-input-wrapper">

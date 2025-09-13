@@ -154,6 +154,9 @@ export const productCategories = [
   "أخرى",
 ];
 
+// Stock levels for filtering products
+export const stockLevels = ["نفذ من المخزون", "منخفض", "متوفر"];
+
 // Suppliers list
 export const suppliers = [
   "شركة الأثاث العالمية",
