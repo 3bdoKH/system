@@ -17,12 +17,12 @@ import { formatDate } from '../../utils/formatters';
 const ReturnDetailsModal = ({ returnItem, customer, userRole, onClose, onAction }) => {
   const [notes, setNotes] = useState('');
   const [refundAmount, setRefundAmount] = useState(returnItem.approvalStatus === 'approved' ? returnItem.refundAmount : returnItem.totalPrice);
-  
+
   const handleAction = (actionType) => {
     // Handle different actions based on the action type and user role
     onAction(returnItem, actionType, notes);
   };
-  
+
   const getStatusComponent = () => {
     switch (returnItem.approvalStatus) {
       case 'pending':
@@ -50,7 +50,7 @@ const ReturnDetailsModal = ({ returnItem, customer, userRole, onClose, onAction 
         return null;
     }
   };
-  
+
   return (
     <div className="modal-overlay">
       <div className="return-details-modal">
@@ -60,17 +60,17 @@ const ReturnDetailsModal = ({ returnItem, customer, userRole, onClose, onAction 
             <X size={18} />
           </button>
         </div>
-        
+
         <div className="modal-content">
           <div className="status-section">
             {getStatusComponent()}
           </div>
-          
+
           <div className="return-overview">
             <div className="return-image">
-              <img src={returnItem.imageUrl} alt="صورة المنتج" />
+              <img src={require(`../../${returnItem.imageUrl}`)} alt="صورة المنتج" />
             </div>
-            
+
             <div className="return-summary">
               <h3>معلومات الطلب</h3>
               <div className="info-grid">
@@ -101,7 +101,7 @@ const ReturnDetailsModal = ({ returnItem, customer, userRole, onClose, onAction 
               </div>
             </div>
           </div>
-          
+
           <div className="customer-details">
             <h3>معلومات العميل</h3>
             <div className="info-grid">
@@ -119,7 +119,7 @@ const ReturnDetailsModal = ({ returnItem, customer, userRole, onClose, onAction 
               </div>
             </div>
           </div>
-          
+
           {userRole === 'accountant' && returnItem.approvalStatus === 'pending' && (
             <div className="return-request-section">
               <h3>طلب المراجعة</h3>
@@ -136,7 +136,7 @@ const ReturnDetailsModal = ({ returnItem, customer, userRole, onClose, onAction 
               </div>
             </div>
           )}
-          
+
           {userRole === 'stock_manager' && returnItem.approvalStatus === 'pending' && (
             <div className="return-approval-section">
               <h3>مراجعة طلب الإرجاع</h3>
@@ -173,7 +173,7 @@ const ReturnDetailsModal = ({ returnItem, customer, userRole, onClose, onAction 
               )}
             </div>
           )}
-          
+
           {userRole === 'accountant' && returnItem.approvalStatus === 'approved' && !returnItem.refundDate && (
             <div className="refund-processing-section">
               <h3>معالجة استرجاع المبلغ</h3>
@@ -195,17 +195,17 @@ const ReturnDetailsModal = ({ returnItem, customer, userRole, onClose, onAction 
             </div>
           )}
         </div>
-        
+
         <div className="modal-footer">
           <button className="cancel-button" onClick={onClose}>إغلاق</button>
-          
+
           {/* Conditional action buttons based on role and status */}
           {userRole === 'accountant' && returnItem.approvalStatus === 'pending' && (
             <button className="action-button submit" onClick={() => handleAction('submit_for_review')}>
               إرسال للمراجعة
             </button>
           )}
-          
+
           {userRole === 'stock_manager' && returnItem.approvalStatus === 'pending' && (
             <>
               <button className="action-button reject" onClick={() => handleAction('reject')}>
@@ -216,7 +216,7 @@ const ReturnDetailsModal = ({ returnItem, customer, userRole, onClose, onAction 
               </button>
             </>
           )}
-          
+
           {userRole === 'accountant' && returnItem.approvalStatus === 'approved' && !returnItem.refundDate && (
             <button className="action-button refund" onClick={() => handleAction('complete_refund')}>
               تأكيد استرجاع المبلغ

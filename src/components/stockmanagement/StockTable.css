@@ -11,6 +11,11 @@
   border-collapse: collapse;
 }
 
+.stock-table thead {
+  background-color: var(--dark-background);
+}
+
+
 .stock-table th,
 .stock-table td {
   padding: 12px 15px;

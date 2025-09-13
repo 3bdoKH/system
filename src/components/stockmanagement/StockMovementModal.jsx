@@ -21,7 +21,7 @@ const StockMovementModal = ({ product, movementType, onClose, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Validate quantity
     const quantityNum = Number(quantity);
     if (!quantity || isNaN(quantityNum) || quantityNum <= 0) {
@@ -48,11 +48,11 @@ const StockMovementModal = ({ product, movementType, onClose, onSubmit }) => {
             <X size={18} />
           </button>
         </div>
-        
+
         <form onSubmit={handleSubmit}>
           <div className="modal-content">
             <div className="product-summary">
-              <img src={product.imageUrl} alt={product.name} className="product-thumbnail" />
+              <img src={require(`../../${product.imageUrl}`)} alt={product.name} className="product-thumbnail" />
               <div className="product-info">
                 <h3>{product.name}</h3>
                 <div className="sku">{product.sku}</div>
@@ -115,7 +115,7 @@ const StockMovementModal = ({ product, movementType, onClose, onSubmit }) => {
               <div className="preview-item final">
                 <span className="label">الكمية النهائية:</span>
                 <span className="value">
-                  {isAddition 
+                  {isAddition
                     ? product.stockQuantity + Number(quantity || 0)
                     : product.stockQuantity - Number(quantity || 0) < 0
                       ? 0
@@ -128,8 +128,8 @@ const StockMovementModal = ({ product, movementType, onClose, onSubmit }) => {
 
           <div className="modal-footer">
             <button type="button" className="cancel-button" onClick={onClose}>إلغاء</button>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className={`submit-button ${isAddition ? 'add' : 'remove'}`}
             >
               تأكيد {isAddition ? 'الإضافة' : 'السحب'}

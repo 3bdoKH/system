@@ -2,8 +2,8 @@
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 550px;
+  width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -104,8 +104,8 @@
 }
 
 .stock-movement-modal .quantity-input {
-  width: 100%;
-  padding: 10px 40px 10px 15px;
+  width: 97%;
+  padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
@@ -133,7 +133,7 @@
 }
 
 .stock-movement-modal .notes-input {
-  width: 100%;
+  width: 96%;
   padding: 10px 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
